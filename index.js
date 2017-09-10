@@ -1,8 +1,10 @@
-var download = require('./price').download;
+var Price = require('./price');
 
 console.log('hello');
 
-download((value) => {
+var price = new Price();
+
+price.download((value) => {
     console.log(`Closing price: ${value}`);
 });
 

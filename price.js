@@ -1,6 +1,8 @@
 var yahooFinance = require('yahoo-finance');
 
-exports.download = function(callback) {
+function Price() {}
+
+Price.prototype.download = function(callback) {
     var ticker = "BATS";
     
     yahooFinance.historical({
@@ -17,4 +19,6 @@ exports.download = function(callback) {
         // }, this);
     
       });
-}
+};
+
+module.exports = Price;
