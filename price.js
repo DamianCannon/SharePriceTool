@@ -1,6 +1,6 @@
 var yahooFinance = require('yahoo-finance');
 
-exports.download = function() {
+exports.download = function(callback) {
     var ticker = "BATS";
     
     yahooFinance.historical({
@@ -8,12 +8,13 @@ exports.download = function() {
         from: '2017-07-31',
         to: '2017-07-31',
         period: 'd'  // 'd' (daily), 'w' (weekly), 'm' (monthly), 'v' (dividends only)
-      }, function (err, quotes) {
-    
-        quotes.forEach(function(quote) {
-            console.log(`Closing price: ${quote.close}`);
+    }, function (err, quotes) {
+        callback(quotes[0].close);
+
+        // quotes.forEach(function(quote) {
+        //     console.log(`Closing price: ${quote.close}`);
             
-        }, this);
+        // }, this);
     
       });
 }

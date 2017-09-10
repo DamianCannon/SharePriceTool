@@ -2,7 +2,9 @@ var download = require('./price').download;
 
 console.log('hello');
 
-download();
+download((value) => {
+    console.log(`Closing price: ${value}`);
+});
 
 //var ticker = "BATS";
 
