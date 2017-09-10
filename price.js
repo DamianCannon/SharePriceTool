@@ -2,21 +2,34 @@ var yahooFinance = require('yahoo-finance');
 
 function Price() {}
 
-Price.prototype.download = function(ticker, callback) {
+Price.prototype.downloadSinglePrice = function(ticker, date, callback) {
+    var tickerForLSE = `${ticker}.L`;
+    
     yahooFinance.historical({
-        symbol: `${ticker}.L`,
-        from: '2017-07-31',
-        to: '2017-07-31',
+        symbol: tickerForLSE,
+        from: date,
+        to: date,
         period: 'd'  // 'd' (daily), 'w' (weekly), 'm' (monthly), 'v' (dividends only)
     }, function (err, quotes) {
         callback(quotes[0].close);
+    });
+};
 
-        // quotes.forEach(function(quote) {
-        //     console.log(`Closing price: ${quote.close}`);
-            
-        // }, this);
+Price.prototype.downloadMultiplePrices = function(tickers, date, callback) {
+    var tickersForLSE = tickers.map(x => `${x}.L`);
     
-      });
+    yahooFinance.historical({
+        symbols: tickersForLSE,
+        from: date,
+        to: date,
+        period: 'd'  // 'd' (daily), 'w' (weekly), 'm' (monthly), 'v' (dividends only)
+    }, function (err, quotes) {
+        var results = [];
+        for (var key in quotes) { results.push(quotes[key].pop()) };
+        var closePrices = results.map(x => { return ({symbol: x.symbol, close: x.close})});
+     
+        callback(closePrices);
+    });
 };
 
 module.exports = Price;
