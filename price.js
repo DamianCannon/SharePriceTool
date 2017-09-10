@@ -2,9 +2,7 @@ var yahooFinance = require('yahoo-finance');
 
 function Price() {}
 
-Price.prototype.download = function(callback) {
-    var ticker = "BATS";
-    
+Price.prototype.download = function(ticker, callback) {
     yahooFinance.historical({
         symbol: `${ticker}.L`,
         from: '2017-07-31',
