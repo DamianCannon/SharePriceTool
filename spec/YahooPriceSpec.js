@@ -1,5 +1,5 @@
-describe("Price", function() {
-    var Price = require('../Price');
+describe("YahooPrice", function() {
+    var YahooPrice = require('../YahooPrice');
     var price;
     var historicPrices = [
         { ticker: 'BATS', date: '2017-07-31', price: 4713.5 },
@@ -9,7 +9,7 @@ describe("Price", function() {
     ];
 
     beforeEach(function() {
-        price = new Price();
+        price = new YahooPrice();
     });
   
     it("should exist", function() {

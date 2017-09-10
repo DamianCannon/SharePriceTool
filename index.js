@@ -1,8 +1,8 @@
-var Price = require('./price');
+var YahooPrice = require('./YahooPrice');
 
 console.log('hello');
 
-var price = new Price();
+var price = new YahooPrice();
 
 var tickers = ['ACSO', 'AV', 'BOI', 'BKG', 'BLT', 'BVXP', 'BUR', 'CCC', 'DTG', 'FDM', 'FEVR', 'GAW', 
 'GSK', 'HEAD', 'LTHM', 'LLPD', 'LXB', 'NWBD', 'NXT', 'NRR', 'PCA', 'CAKE', 'PHTM', 'PLP', 'PPH', 

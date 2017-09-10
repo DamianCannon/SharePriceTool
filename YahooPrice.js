@@ -1,8 +1,8 @@
 var yahooFinance = require('yahoo-finance');
 
-function Price() {}
+function YahooPrice() {}
 
-Price.prototype.downloadSinglePrice = function(ticker, date, callback) {
+YahooPrice.prototype.downloadSinglePrice = function(ticker, date, callback) {
     var tickerForLSE = `${ticker}.L`;
     
     yahooFinance.historical({
@@ -19,7 +19,7 @@ Price.prototype.downloadSinglePrice = function(ticker, date, callback) {
     });
 };
 
-Price.prototype.downloadMultiplePrices = function(tickers, date, callback) {
+YahooPrice.prototype.downloadMultiplePrices = function(tickers, date, callback) {
     var tickersForLSE = tickers.map(x => `${x}.L`);
     
     yahooFinance.historical({
@@ -36,4 +36,4 @@ Price.prototype.downloadMultiplePrices = function(tickers, date, callback) {
     });
 };
 
-module.exports = Price;
+module.exports = YahooPrice;
