@@ -1,8 +1,8 @@
 var YahooPrice = require('./YahooPrice');
+var GooglePrice = require('./GooglePrice');
 
-console.log('hello');
-
-var price = new YahooPrice();
+var yahooPrice = new YahooPrice();
+var googlePrice = new GooglePrice();
 
 var tickers = ['ACSO', 'AV', 'BOI', 'BKG', 'BLT', 'BVXP', 'BUR', 'CCC', 'DTG', 'FDM', 'FEVR', 'GAW', 
 'GSK', 'HEAD', 'LTHM', 'LLPD', 'LXB', 'NWBD', 'NXT', 'NRR', 'PCA', 'CAKE', 'PHTM', 'PLP', 'PPH', 
@@ -10,14 +10,12 @@ var tickers = ['ACSO', 'AV', 'BOI', 'BKG', 'BLT', 'BVXP', 'BUR', 'CCC', 'DTG', '
 
 var date = '2017-07-04';
 
-// price.downloadMultiplePrices(tickers, date, (value) => {
-//     console.log(value);
-// });
+googlePrice.downloadMultiplePrices(tickers, date, (value) => {
+    console.log(value);
+});
 
-tickers.forEach((tick, index, thing) => {
-    price.downloadSinglePrice(tick, date, (value) => {
-        console.log(`${tick} ${value}`);
-    });
-})
-
-console.log('Done');
+// tickers.forEach((tick, index, thing) => {
+//     yahooPrice.downloadSinglePrice(tick, date, (value) => {
+//         console.log(`${tick} ${value}`);
+//     });
+// })

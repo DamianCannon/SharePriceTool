@@ -12,6 +12,7 @@
     "jasmine": "^2.8.0"
   },
   "dependencies": {
+    "google-finance": "^0.1.9",
     "yahoo-finance": "^0.3.2"
   }
 }
