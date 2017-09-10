@@ -11,7 +11,11 @@ Price.prototype.downloadSinglePrice = function(ticker, date, callback) {
         to: date,
         period: 'd'  // 'd' (daily), 'w' (weekly), 'm' (monthly), 'v' (dividends only)
     }, function (err, quotes) {
-        callback(quotes[0].close);
+        if (quotes.length > 0) {
+            callback(quotes[0].close);
+        } else {
+            callback();
+        }
     });
 };
 
@@ -26,7 +30,7 @@ Price.prototype.downloadMultiplePrices = function(tickers, date, callback) {
     }, function (err, quotes) {
         var results = [];
         for (var key in quotes) { results.push(quotes[key].pop()) };
-        var closePrices = results.map(x => { return ({symbol: x.symbol, close: x.close})});
+        var closePrices = results.filter(x => x != undefined).map(x => { return ({symbol: x.symbol, close: x.close})});
      
         callback(closePrices);
     });
